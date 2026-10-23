@@ -1,0 +1,50 @@
+{
+  "software": {
+    "content_guidelines": "Create clear, well-structured technical content. Use code examples where appropriate. Follow best practices for the relevant technology stack.",
+    "quality_standards": "Ensure accuracy, completeness, and clarity. Include error handling considerations. Provide context for technical decisions.",
+    "tone_guidelines": "Professional and precise. Technical but accessible. Helpful and educational.",
+    "output_style": "Well-organized with clear sections. Use code blocks for examples. Include explanations and comments."
+  },
+  "education": {
+    "content_guidelines": "Follow instructional design principles. Start with objectives, build progressively, include practice opportunities. Use examples and analogies.",
+    "quality_standards": "Age/skill-appropriate content. Clear learning objectives. Measurable outcomes. Engaging presentation.",
+    "tone_guidelines": "Patient and encouraging. Clear and precise. Supportive and motivating. Builds confidence.",
+    "output_style": "Structured lessons with objectives. Include examples, exercises, and summaries. Progressive complexity."
+  },
+  "healthcare": {
+    "content_guidelines": "Prioritize accuracy and patient safety. Use evidence-based information. Include appropriate disclaimers. Balance technical accuracy with accessibility.",
+    "quality_standards": "Medically accurate. Properly cited. Includes safety information. Recommends professional consultation.",
+    "tone_guidelines": "Empathetic and reassuring. Professional but warm. Clear and honest. Respectful of concerns.",
+    "output_style": "Clear sections with key points. Plain language explanations. Action items and warning signs clearly marked."
+  },
+  "marketing": {
+    "content_guidelines": "Focus on value proposition and benefits. Know the target audience. Use persuasive but honest messaging. Include clear calls to action.",
+    "quality_standards": "On-brand messaging. Compelling copy. Clear value proposition. Measurable objectives.",
+    "tone_guidelines": "On-brand voice. Engaging and persuasive. Authentic and relatable. Action-oriented.",
+    "output_style": "Attention-grabbing headlines. Benefit-focused content. Clear structure. Strong calls to action."
+  },
+  "finance": {
+    "content_guidelines": "Ensure accuracy in all calculations and data. Include appropriate disclaimers. Explain methodology clearly. Consider risk factors.",
+    "quality_standards": "Accurate data and calculations. Clear methodology. Appropriate disclaimers. Professional presentation.",
+    "tone_guidelines": "Professional and authoritative. Clear and precise. Objective and balanced. Risk-aware.",
+    "output_style": "Executive summary with details. Data-driven with clear visualizations. Methodology explained. Recommendations justified."
+  },
+  "legal": {
+    "content_guidelines": "Include disclaimers that content is not legal advice. Be precise and unambiguous. Define terms clearly. Recommend professional consultation.",
+    "quality_standards": "Accurate legal information. Clear disclaimers. Precise language. Proper structure.",
+    "tone_guidelines": "Formal and precise. Objective and neutral. Clear and unambiguous. Professional.",
+    "output_style": "Well-structured with clear sections. Defined terms. Numbered clauses where appropriate. Disclaimers prominent."
+  },
+  "general": {
+    "content_guidelines": "Create clear, helpful content that directly addresses the user's needs. Organize information logically. Provide actionable insights.",
+    "quality_standards": "Accurate and well-researched. Clear and concise. Helpful and actionable. Properly structured.",
+    "tone_guidelines": "Helpful and professional. Clear and conversational. Respectful and supportive.",
+    "output_style": "Clear structure with headings. Bullet points for lists. Examples where helpful. Summaries for complex content."
+  },
+  "default": {
+    "content_guidelines": "Create clear, well-structured content that addresses the user's request. Be thorough but concise. Provide actionable information.",
+    "quality_standards": "Accurate information. Clear presentation. Helpful content. Appropriate depth.",
+    "tone_guidelines": "Professional yet approachable. Clear and helpful. Respectful and supportive.",
+    "output_style": "Clean, organized structure. Use formatting for readability. Include relevant examples."
+  }
+}

@@ -1,0 +1,24 @@
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+backend/.env
+frontend/.env
+frontend/.env.*
+
+# Local environments and installed dependencies
+.venv/
+venv/
+backend/venv/
+frontend/node_modules/
+
+# Generated data and build output
+backend/chroma_data/
+frontend/dist/
+
+# Python cache files
+__pycache__/
+*.py[cod]
+
+# Logs
+*.log

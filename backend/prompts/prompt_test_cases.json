@@ -1,0 +1,520 @@
+{
+  "meta": {
+    "version": "1.0.0",
+    "description": "Ready-to-use test cases for ReAct/PreAct/REFLECT models",
+    "total_cases": 20,
+    "last_updated": "2024-12-26"
+  },
+
+  "test_cases": [
+    {
+      "id": "TC001",
+      "name": "Simple ReAct - Debug Task",
+      "difficulty": "simple",
+      "target_technique": "react",
+      "domain": "software",
+      "prompt": "I have a Python function that should reverse a string but it's returning None. Here's the code:\n\ndef reverse_string(s):\n    reversed_s = s[::-1]\n\nThink through this step-by-step to identify and fix the bug.",
+      "expected_behavior": {
+        "technique_triggered": "react",
+        "reasoning_pattern": "Thought-Action-Observation",
+        "key_elements": ["identify missing return", "explain the issue", "provide fix"]
+      },
+      "success_criteria": [
+        "Model shows explicit thinking steps",
+        "Correctly identifies missing return statement",
+        "Provides corrected code"
+      ]
+    },
+    {
+      "id": "TC002",
+      "name": "Simple PreAct - Project Planning",
+      "difficulty": "simple",
+      "target_technique": "preact",
+      "domain": "software",
+      "prompt": "I want to build a simple todo list application with React. Before you start coding, create a plan that outlines:\n1. The components needed\n2. The state management approach\n3. The order of implementation\n\nOutput the plan first.",
+      "expected_behavior": {
+        "technique_triggered": "preact",
+        "reasoning_pattern": "Structured planning before execution",
+        "key_elements": ["component list", "state strategy", "implementation order"]
+      },
+      "success_criteria": [
+        "Model creates plan before any code",
+        "Plan has clear numbered steps",
+        "Dependencies between steps identified"
+      ]
+    },
+    {
+      "id": "TC003",
+      "name": "Simple REFLECT - Code Review",
+      "difficulty": "simple",
+      "target_technique": "reflect",
+      "domain": "software",
+      "prompt": "Review this JavaScript function for potential issues and improvements:\n\nfunction fetchUserData(userId) {\n  fetch('/api/users/' + userId)\n    .then(response => response.json())\n    .then(data => {\n      return data;\n    });\n}\n\nAfter your initial analysis, critique your own review and provide a refined assessment.",
+      "expected_behavior": {
+        "technique_triggered": "reflect",
+        "reasoning_pattern": "Initial review → Self-critique → Refined output",
+        "key_elements": ["identify async issues", "missing error handling", "self-review"]
+      },
+      "success_criteria": [
+        "Initial analysis provided",
+        "Self-critique identifies gaps in first review",
+        "Refined version is more comprehensive"
+      ]
+    },
+    {
+      "id": "TC004",
+      "name": "Medium ReAct - Algorithm Design",
+      "difficulty": "medium",
+      "target_technique": "react",
+      "domain": "software",
+      "prompt": "Design an algorithm to find the longest palindromic substring in a given string.\n\nWork through this step-by-step:\n- First, think about what approach to use\n- Then, take action to design the algorithm\n- Observe the result and refine if needed\n\nShow your Thought → Action → Observation process for each step.",
+      "expected_behavior": {
+        "technique_triggered": "react",
+        "reasoning_pattern": "Multiple TAO cycles",
+        "key_elements": ["approach selection", "algorithm design", "complexity analysis"]
+      },
+      "success_criteria": [
+        "Clear Thought-Action-Observation format",
+        "Multiple reasoning cycles shown",
+        "Final algorithm is correct and explained"
+      ]
+    },
+    {
+      "id": "TC005",
+      "name": "Medium PreAct - Course Creation",
+      "difficulty": "medium",
+      "target_technique": "preact",
+      "domain": "education",
+      "prompt": "Create a master plan for a 4-week online course teaching SQL to beginners.\n\nYour plan should include:\n- Course title and description\n- Weekly breakdown with topics\n- Learning objectives for each week\n- Types of exercises and assessments\n- Prerequisites and target audience\n\nCreate the complete plan first. Do not write the actual course content yet.",
+      "expected_behavior": {
+        "technique_triggered": "preact",
+        "reasoning_pattern": "Comprehensive upfront planning",
+        "key_elements": ["structured curriculum", "clear objectives", "assessment strategy"]
+      },
+      "success_criteria": [
+        "Complete 4-week structure",
+        "Each week has clear learning objectives",
+        "Plan is actionable for content creation"
+      ]
+    },
+    {
+      "id": "TC006",
+      "name": "Medium REFLECT - Architecture Review",
+      "difficulty": "medium",
+      "target_technique": "reflect",
+      "domain": "software",
+      "prompt": "I designed this microservices architecture for an e-commerce platform:\n\n- User Service (handles auth and profiles)\n- Product Service (catalog management)\n- Order Service (order processing)\n- Payment Service (payment processing)\n- All services communicate via REST APIs\n- Single PostgreSQL database shared by all services\n\nReview this architecture, then critique your review to ensure you haven't missed anything important. Provide a final refined assessment with recommendations.",
+      "expected_behavior": {
+        "technique_triggered": "reflect",
+        "reasoning_pattern": "Review → Self-critique → Refined recommendation",
+        "key_elements": ["identify shared DB antipattern", "coupling concerns", "improved suggestions"]
+      },
+      "success_criteria": [
+        "Initial review identifies key issues",
+        "Self-critique catches additional concerns",
+        "Final recommendation addresses all issues"
+      ]
+    },
+    {
+      "id": "TC007",
+      "name": "Medium Combined - Feature Implementation",
+      "difficulty": "medium",
+      "target_technique": "combined",
+      "domain": "software",
+      "prompt": "Implement a rate limiting middleware for a Node.js Express application.\n\nApproach this in three phases:\n\n## Phase 1: Planning\nCreate a plan with the algorithm choice, data structure, and implementation steps.\n\n## Phase 2: Implementation\nWork through your plan step-by-step, showing your reasoning.\n\n## Phase 3: Review\nReview your implementation for edge cases and improvements.",
+      "expected_behavior": {
+        "technique_triggered": "combined",
+        "reasoning_pattern": "PreAct → ReAct → REFLECT sequence",
+        "key_elements": ["planning phase", "step-by-step implementation", "self-review"]
+      },
+      "success_criteria": [
+        "All three phases clearly separated",
+        "Plan is created before coding",
+        "Review identifies improvements"
+      ]
+    },
+    {
+      "id": "TC008",
+      "name": "Complex ReAct - System Debugging",
+      "difficulty": "complex",
+      "target_technique": "react",
+      "domain": "software",
+      "prompt": "Our production Kubernetes cluster is experiencing intermittent 503 errors. The errors occur randomly across all services, typically during peak hours (2-4 PM).\n\nCurrent setup:\n- 3 node cluster (8 CPU, 32GB RAM each)\n- 15 microservices\n- Nginx Ingress Controller\n- No recent deployments\n- Logs show 'upstream connect error or disconnect/reset before headers'\n\nDebug this issue using the Thought-Action-Observation pattern:\n1. Thought: What could cause this?\n2. Action: What would you investigate?\n3. Observation: What would you expect to find?\n\nContinue until you have a diagnosis and solution.",
+      "expected_behavior": {
+        "technique_triggered": "react",
+        "reasoning_pattern": "Extended TAO investigation",
+        "key_elements": ["systematic investigation", "multiple hypotheses", "root cause analysis"]
+      },
+      "success_criteria": [
+        "Multiple investigation cycles",
+        "Systematic approach to debugging",
+        "Actionable diagnosis and solution"
+      ]
+    },
+    {
+      "id": "TC009",
+      "name": "Complex PreAct - System Migration",
+      "difficulty": "complex",
+      "target_technique": "preact",
+      "domain": "software",
+      "prompt": "Plan a migration from a monolithic Django application to microservices architecture.\n\nCurrent state:\n- 50,000 lines of Python code\n- PostgreSQL database with 100 tables\n- 10,000 daily active users\n- 99.9% uptime requirement\n- Team of 6 developers\n\nCreate a comprehensive migration plan including:\n- Service decomposition strategy\n- Data migration approach\n- Phased rollout plan\n- Risk mitigation strategies\n- Timeline estimates\n- Success criteria for each phase\n\nThis is ONLY the planning phase. Do not implement anything.",
+      "expected_behavior": {
+        "technique_triggered": "preact",
+        "reasoning_pattern": "Detailed project planning",
+        "key_elements": ["strangler pattern", "data migration", "risk analysis"]
+      },
+      "success_criteria": [
+        "Comprehensive multi-phase plan",
+        "Realistic timeline",
+        "Risk mitigation addressed",
+        "Clear success criteria per phase"
+      ]
+    },
+    {
+      "id": "TC010",
+      "name": "Complex REFLECT - Security Audit",
+      "difficulty": "complex",
+      "target_technique": "reflect",
+      "domain": "software",
+      "prompt": "Perform a security audit on this authentication implementation:\n\n```javascript\napp.post('/login', async (req, res) => {\n  const { email, password } = req.body;\n  const user = await db.query('SELECT * FROM users WHERE email = \"' + email + '\"');\n  if (user && user.password === password) {\n    const token = jwt.sign({ userId: user.id, role: user.role }, 'secret123');\n    res.cookie('token', token);\n    res.json({ success: true });\n  } else {\n    res.json({ success: false, message: 'Invalid credentials' });\n  }\n});\n```\n\n1. Perform initial security review\n2. Critique your review - what did you miss?\n3. Provide final comprehensive assessment with severity ratings\n4. Suggest secure implementation",
+      "expected_behavior": {
+        "technique_triggered": "reflect",
+        "reasoning_pattern": "Deep iterative review",
+        "key_elements": ["SQL injection", "plaintext password", "weak JWT", "multiple iterations"]
+      },
+      "success_criteria": [
+        "Multiple vulnerabilities identified",
+        "Self-critique reveals additional issues",
+        "Severity ratings provided",
+        "Secure alternative code provided"
+      ]
+    },
+    {
+      "id": "TC011",
+      "name": "Healthcare - Patient Education",
+      "difficulty": "medium",
+      "target_technique": "combined",
+      "domain": "healthcare",
+      "prompt": "Create educational content about managing Type 2 diabetes for newly diagnosed patients.\n\n## Phase 1: Plan the content structure\nOutline the key topics, order, and approach.\n\n## Phase 2: Develop the content\nWork through each topic, explaining your reasoning for what to include.\n\n## Phase 3: Review for safety and accuracy\nCheck your content for medical accuracy and appropriate disclaimers.\n\nNote: Include clear disclaimers that this is educational only.",
+      "expected_behavior": {
+        "technique_triggered": "combined",
+        "reasoning_pattern": "Plan → Execute → Review",
+        "key_elements": ["structured education", "safety first", "disclaimers included"]
+      },
+      "success_criteria": [
+        "Clear content structure",
+        "Accurate medical information",
+        "Appropriate disclaimers present",
+        "Patient-friendly language"
+      ]
+    },
+    {
+      "id": "TC012",
+      "name": "Finance - Portfolio Analysis",
+      "difficulty": "medium",
+      "target_technique": "react",
+      "domain": "finance",
+      "prompt": "Analyze this investment portfolio and suggest rebalancing:\n\nCurrent allocation:\n- US Large Cap Stocks: 70%\n- International Stocks: 10%\n- Bonds: 10%\n- Cash: 10%\n\nInvestor profile:\n- Age: 35\n- Risk tolerance: Moderate\n- Time horizon: 25 years to retirement\n- Goal: Retirement savings\n\nThink through this step-by-step, explaining your reasoning at each stage of the analysis.\n\nInclude appropriate disclaimers about financial advice.",
+      "expected_behavior": {
+        "technique_triggered": "react",
+        "reasoning_pattern": "Step-by-step financial analysis",
+        "key_elements": ["diversification analysis", "risk assessment", "disclaimers"]
+      },
+      "success_criteria": [
+        "Systematic analysis shown",
+        "Recommendations match risk profile",
+        "Financial disclaimers included"
+      ]
+    },
+    {
+      "id": "TC013",
+      "name": "Marketing - Campaign Strategy",
+      "difficulty": "medium",
+      "target_technique": "preact",
+      "domain": "marketing",
+      "prompt": "Plan a product launch campaign for a new fitness tracking app.\n\nProduct details:\n- AI-powered personalized workout recommendations\n- Free tier + $9.99/month premium\n- Target: Health-conscious millennials\n- Launch budget: $50,000\n- Launch date: 8 weeks away\n\nCreate a comprehensive campaign plan with:\n- Channel strategy\n- Content calendar overview\n- Budget allocation\n- KPIs and success metrics\n- Launch timeline\n\nProvide the strategic plan only. Do not create the actual marketing content.",
+      "expected_behavior": {
+        "technique_triggered": "preact",
+        "reasoning_pattern": "Strategic planning",
+        "key_elements": ["multi-channel strategy", "budget allocation", "metrics"]
+      },
+      "success_criteria": [
+        "Comprehensive channel strategy",
+        "Realistic budget allocation",
+        "Clear KPIs defined",
+        "8-week timeline"
+      ]
+    },
+    {
+      "id": "TC014",
+      "name": "Legal - Contract Analysis",
+      "difficulty": "complex",
+      "target_technique": "reflect",
+      "domain": "legal",
+      "prompt": "Review this software licensing clause for potential issues:\n\n\"Licensee grants Licensor an irrevocable, perpetual, worldwide, royalty-free license to use, modify, distribute, and create derivative works from any data, content, or feedback provided by Licensee through the Software. Licensor may transfer these rights to any third party without notice.\"\n\n1. Initial analysis: Identify concerning elements\n2. Self-critique: What implications might you have missed?\n3. Final assessment: Provide comprehensive review with recommendations\n\nInclude disclaimer that this is educational, not legal advice.",
+      "expected_behavior": {
+        "technique_triggered": "reflect",
+        "reasoning_pattern": "Legal review with iteration",
+        "key_elements": ["IP concerns", "data rights", "transfer clause", "disclaimer"]
+      },
+      "success_criteria": [
+        "Key risks identified",
+        "Self-critique reveals additional concerns",
+        "Actionable recommendations",
+        "Legal disclaimer present"
+      ]
+    },
+    {
+      "id": "TC015",
+      "name": "Education - Lesson Design",
+      "difficulty": "medium",
+      "target_technique": "combined",
+      "domain": "education",
+      "prompt": "Design a 60-minute lesson teaching recursion to computer science students.\n\nStudent profile:\n- Undergraduate CS students\n- Familiar with loops and functions\n- First exposure to recursion\n\n## Phase 1: Lesson Plan\nOutline the lesson structure, timing, and learning objectives.\n\n## Phase 2: Content Development\nDevelop each section, explaining pedagogical choices.\n\n## Phase 3: Quality Review\nReview for clarity, engagement, and learning effectiveness.\n\nProvide a complete, ready-to-teach lesson.",
+      "expected_behavior": {
+        "technique_triggered": "combined",
+        "reasoning_pattern": "Plan → Develop → Review",
+        "key_elements": ["clear objectives", "scaffolded learning", "practice activities"]
+      },
+      "success_criteria": [
+        "60-minute timeline honored",
+        "Progressive complexity",
+        "Includes practice opportunities",
+        "Review improves initial content"
+      ]
+    },
+    {
+      "id": "TC016",
+      "name": "JSON Format - API Design",
+      "difficulty": "medium",
+      "target_technique": "react",
+      "domain": "software",
+      "prompt_type": "json",
+      "prompt": {
+        "task": {
+          "type": "design",
+          "objective": "Design a RESTful API for a booking system",
+          "domain": "software"
+        },
+        "context": {
+          "background": "Hotel booking platform",
+          "constraints": ["Must support 1000 concurrent users", "Sub-200ms response time"],
+          "existing_systems": ["PostgreSQL database", "Redis cache", "Node.js backend"]
+        },
+        "requirements": {
+          "functional": ["Search available rooms", "Create booking", "Cancel booking", "View booking history"],
+          "non_functional": ["Authentication required", "Rate limiting", "Pagination"],
+          "output_format": "OpenAPI specification structure"
+        },
+        "thinking_mode": {
+          "technique": "react",
+          "show_reasoning": true
+        },
+        "instructions": "Think through each endpoint design step-by-step, explaining your reasoning for HTTP methods, URL structure, and response formats."
+      },
+      "expected_behavior": {
+        "technique_triggered": "react",
+        "reasoning_pattern": "Structured JSON input processed",
+        "key_elements": ["understands JSON structure", "follows constraints", "step-by-step design"]
+      },
+      "success_criteria": [
+        "JSON input correctly parsed",
+        "All requirements addressed",
+        "Step-by-step reasoning shown"
+      ]
+    },
+    {
+      "id": "TC017",
+      "name": "JSON Format - Multi-Step Project",
+      "difficulty": "complex",
+      "target_technique": "combined",
+      "domain": "software",
+      "prompt_type": "json",
+      "prompt": {
+        "project": {
+          "name": "Real-time Chat System",
+          "description": "Build a scalable chat application with rooms and direct messaging",
+          "domain": "software"
+        },
+        "phases": [
+          {
+            "id": 1,
+            "name": "Architecture Planning",
+            "technique": "preact",
+            "description": "Design the system architecture",
+            "deliverable": "Architecture document"
+          },
+          {
+            "id": 2,
+            "name": "Implementation Design",
+            "technique": "react",
+            "description": "Detail the implementation approach",
+            "deliverable": "Implementation plan with code structure"
+          },
+          {
+            "id": 3,
+            "name": "Security Review",
+            "technique": "reflect",
+            "description": "Review for security issues",
+            "deliverable": "Security assessment and mitigations"
+          }
+        ],
+        "constraints": {
+          "tech_stack": ["Node.js", "Socket.io", "Redis", "MongoDB"],
+          "scale": "10,000 concurrent connections",
+          "requirements": ["End-to-end encryption", "Message persistence", "Presence indicators"]
+        },
+        "execution_mode": {
+          "sequential_phases": true,
+          "show_transitions": true
+        }
+      },
+      "expected_behavior": {
+        "technique_triggered": "combined",
+        "reasoning_pattern": "Sequential phase execution",
+        "key_elements": ["architecture first", "implementation details", "security review"]
+      },
+      "success_criteria": [
+        "All three phases completed",
+        "Clear transitions between phases",
+        "Each phase uses correct technique"
+      ]
+    },
+    {
+      "id": "TC018",
+      "name": "Minimal Prompt - Natural Handling",
+      "difficulty": "simple",
+      "target_technique": "auto",
+      "domain": "general",
+      "prompt": "How do I center a div in CSS?",
+      "expected_behavior": {
+        "technique_triggered": "auto/default",
+        "reasoning_pattern": "Direct helpful response",
+        "key_elements": ["practical answer", "code examples", "multiple approaches"]
+      },
+      "success_criteria": [
+        "Direct, helpful response",
+        "Working CSS examples",
+        "Model chooses appropriate depth"
+      ],
+      "notes": "Tests how model handles minimal prompts without explicit technique triggers"
+    },
+    {
+      "id": "TC019",
+      "name": "Ambiguous Request - Clarification Handling",
+      "difficulty": "simple",
+      "target_technique": "auto",
+      "domain": "software",
+      "prompt": "Make my website faster.",
+      "expected_behavior": {
+        "technique_triggered": "auto",
+        "reasoning_pattern": "Request clarification or provide general guidance",
+        "key_elements": ["asks for context OR provides general tips", "structured response"]
+      },
+      "success_criteria": [
+        "Handles ambiguity gracefully",
+        "Either asks clarifying questions or provides general guidance",
+        "Response is helpful despite vague input"
+      ],
+      "notes": "Tests handling of underspecified requests"
+    },
+    {
+      "id": "TC020",
+      "name": "Full Pipeline - Complete Project",
+      "difficulty": "complex",
+      "target_technique": "combined",
+      "domain": "software",
+      "prompt": "Build a URL shortener service.\n\nRequirements:\n- Generate short codes for URLs\n- Redirect short URLs to original\n- Track click analytics\n- Handle 1 million URLs\n- API for programmatic access\n\nApproach this systematically:\n\n## Phase 1: Planning (PreAct)\nCreate a comprehensive architecture and implementation plan. Define:\n- System components\n- Database schema\n- API endpoints\n- Scaling strategy\n\n## Phase 2: Implementation (ReAct)\nWork through the implementation details step-by-step, showing your thought process for:\n- Short code generation algorithm\n- Database design\n- API implementation\n- Caching strategy\n\n## Phase 3: Review (REFLECT)\nReview your design for:\n- Security vulnerabilities\n- Performance bottlenecks\n- Edge cases\n- Improvements\n\nProvide clear section headers for each phase.",
+      "expected_behavior": {
+        "technique_triggered": "combined",
+        "reasoning_pattern": "Complete PreAct→ReAct→REFLECT pipeline",
+        "key_elements": ["comprehensive plan", "step-by-step implementation", "thorough review"]
+      },
+      "success_criteria": [
+        "All three phases completed thoroughly",
+        "Plan addresses all requirements",
+        "Implementation is detailed and practical",
+        "Review catches real issues"
+      ]
+    }
+  ],
+
+  "test_categories": {
+    "by_difficulty": {
+      "simple": ["TC001", "TC002", "TC003", "TC018", "TC019"],
+      "medium": ["TC004", "TC005", "TC006", "TC007", "TC011", "TC012", "TC013", "TC015", "TC016"],
+      "complex": ["TC008", "TC009", "TC010", "TC014", "TC017", "TC020"]
+    },
+    "by_technique": {
+      "react": ["TC001", "TC004", "TC008", "TC012", "TC016"],
+      "preact": ["TC002", "TC005", "TC009", "TC013"],
+      "reflect": ["TC003", "TC006", "TC010", "TC014"],
+      "combined": ["TC007", "TC011", "TC015", "TC017", "TC020"],
+      "auto": ["TC018", "TC019"]
+    },
+    "by_domain": {
+      "software": ["TC001", "TC002", "TC003", "TC004", "TC006", "TC007", "TC008", "TC009", "TC010", "TC016", "TC017", "TC020"],
+      "education": ["TC005", "TC015"],
+      "healthcare": ["TC011"],
+      "finance": ["TC012"],
+      "marketing": ["TC013"],
+      "legal": ["TC014"],
+      "general": ["TC018", "TC019"]
+    },
+    "by_format": {
+      "natural_language": ["TC001", "TC002", "TC003", "TC004", "TC005", "TC006", "TC007", "TC008", "TC009", "TC010", "TC011", "TC012", "TC013", "TC014", "TC015", "TC018", "TC019", "TC020"],
+      "json_structured": ["TC016", "TC017"]
+    }
+  },
+
+  "evaluation_rubric": {
+    "technique_activation": {
+      "weight": 30,
+      "description": "Did the model use the intended technique?",
+      "scores": {
+        "3": "Technique clearly activated with proper patterns",
+        "2": "Technique partially activated",
+        "1": "Technique not activated but response helpful",
+        "0": "No technique activation and poor response"
+      }
+    },
+    "reasoning_quality": {
+      "weight": 25,
+      "description": "Quality of shown reasoning/planning/reflection",
+      "scores": {
+        "3": "Clear, logical, well-structured reasoning",
+        "2": "Reasoning present but could be clearer",
+        "1": "Minimal reasoning shown",
+        "0": "No reasoning visible"
+      }
+    },
+    "task_completion": {
+      "weight": 25,
+      "description": "Did the model complete the task correctly?",
+      "scores": {
+        "3": "Task fully completed with high quality",
+        "2": "Task mostly completed",
+        "1": "Task partially completed",
+        "0": "Task not completed"
+      }
+    },
+    "output_format": {
+      "weight": 20,
+      "description": "Did the output follow the requested format?",
+      "scores": {
+        "3": "Perfect format adherence",
+        "2": "Mostly correct format",
+        "1": "Some format issues",
+        "0": "Format not followed"
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+

@@ -1,0 +1,332 @@
+{
+  "meta": {
+    "version": "1.0.0",
+    "description": "User prompt templates for ReAct/PreAct/REFLECT models",
+    "last_updated": "2024-12-26"
+  },
+  
+  "technique_triggers": {
+    "react": {
+      "description": "Triggers Thought-Action-Observation reasoning loops",
+      "key_phrases": [
+        "think through this step-by-step",
+        "explain your reasoning at each stage",
+        "show your thought process",
+        "what actions would you take and why",
+        "reason through this problem",
+        "work through this methodically",
+        "analyze and act on each step"
+      ],
+      "when_to_use": "Complex tasks requiring iterative reasoning with actions"
+    },
+    "preact": {
+      "description": "Triggers upfront planning before execution",
+      "key_phrases": [
+        "create a plan first",
+        "outline your approach before starting",
+        "what strategy would work best",
+        "design a structured plan",
+        "break this into actionable steps",
+        "plan the execution sequence",
+        "create a master plan for this task"
+      ],
+      "when_to_use": "Multi-step tasks that benefit from structured planning"
+    },
+    "reflect": {
+      "description": "Triggers self-review and quality improvement",
+      "key_phrases": [
+        "review your answer for issues",
+        "critique your solution",
+        "identify potential problems",
+        "what could be improved",
+        "check for consistency and errors",
+        "refine and enhance your output",
+        "validate your approach"
+      ],
+      "when_to_use": "Tasks requiring quality assurance and iteration"
+    },
+    "combined": {
+      "description": "Triggers all three techniques in sequence",
+      "key_phrases": [
+        "plan first, then execute step-by-step, and finally review",
+        "create a plan, work through it with reasoning, then critique",
+        "approach this systematically: plan, execute, reflect"
+      ],
+      "when_to_use": "Complex, high-stakes tasks requiring full pipeline"
+    }
+  },
+
+  "natural_language_templates": {
+    "minimal": {
+      "description": "Basic prompt with minimal structure",
+      "template": "{task_description}",
+      "example": "Create a Python function to sort a list of dictionaries by a specific key",
+      "expected_behavior": "Model uses default reasoning mode",
+      "effectiveness": "low"
+    },
+    "basic_structured": {
+      "description": "Simple structured prompt with task and context",
+      "template": "Task: {task}\n\nContext: {context}\n\nPlease provide a detailed response.",
+      "example": "Task: Design a REST API for user management\n\nContext: We're building a SaaS application with 10,000 users. Need endpoints for CRUD operations.\n\nPlease provide a detailed response.",
+      "expected_behavior": "Model provides structured output",
+      "effectiveness": "medium"
+    },
+    "optimal_react": {
+      "description": "Optimized prompt triggering ReAct reasoning",
+      "template": "Task: {task}\n\nContext: {context}\n\nRequirements:\n{requirements}\n\nPlease think through this step-by-step, explaining your reasoning at each stage. For each step:\n1. State what you're thinking about\n2. Decide what action to take\n3. Explain your observation from that action\n\nContinue until the task is complete.",
+      "example": "Task: Debug a memory leak in a Node.js application\n\nContext: Our production server's memory usage grows from 500MB to 4GB over 24 hours, then crashes.\n\nRequirements:\n- Identify potential causes\n- Provide diagnostic steps\n- Suggest fixes with code examples\n\nPlease think through this step-by-step, explaining your reasoning at each stage. For each step:\n1. State what you're thinking about\n2. Decide what action to take\n3. Explain your observation from that action\n\nContinue until the task is complete.",
+      "expected_behavior": "Model uses Thought-Action-Observation loops",
+      "effectiveness": "high"
+    },
+    "optimal_preact": {
+      "description": "Optimized prompt triggering PreAct planning",
+      "template": "Task: {task}\n\nContext: {context}\n\nBefore executing, please:\n1. Create a comprehensive plan with numbered steps\n2. Define what each step should produce\n3. Identify dependencies between steps\n4. Set success criteria for each step\n\nOutput the plan first, then indicate you're ready for execution.",
+      "example": "Task: Build a user authentication system with OAuth2\n\nContext: React frontend with Express.js backend. Need Google and GitHub OAuth plus email/password.\n\nBefore executing, please:\n1. Create a comprehensive plan with numbered steps\n2. Define what each step should produce\n3. Identify dependencies between steps\n4. Set success criteria for each step\n\nOutput the plan first, then indicate you're ready for execution.",
+      "expected_behavior": "Model creates structured plan before acting",
+      "effectiveness": "high"
+    },
+    "optimal_reflect": {
+      "description": "Optimized prompt triggering REFLECT review",
+      "template": "Task: {task}\n\nContext: {context}\n\nAfter completing your response, please:\n1. Review your answer for accuracy and completeness\n2. Check for logical consistency\n3. Identify any gaps or potential issues\n4. Suggest improvements or alternatives\n5. Provide a final refined version if needed\n\nStructure your response as: Initial Response → Self-Critique → Refined Response",
+      "example": "Task: Write a database migration strategy for moving from MongoDB to PostgreSQL\n\nContext: 50GB database with 20 collections, live production traffic, zero downtime requirement.\n\nAfter completing your response, please:\n1. Review your answer for accuracy and completeness\n2. Check for logical consistency\n3. Identify any gaps or potential issues\n4. Suggest improvements or alternatives\n5. Provide a final refined version if needed\n\nStructure your response as: Initial Response → Self-Critique → Refined Response",
+      "expected_behavior": "Model self-reviews and improves output",
+      "effectiveness": "high"
+    },
+    "full_pipeline": {
+      "description": "Triggers all three techniques sequentially",
+      "template": "Task: {task}\n\nContext: {context}\n\nRequirements:\n{requirements}\n\nPlease approach this systematically:\n\n## Phase 1: Planning (PreAct)\nCreate a detailed execution plan with steps, dependencies, and success criteria.\n\n## Phase 2: Execution (ReAct)\nWork through your plan step-by-step, showing your thought process:\n- Thought: What you're considering\n- Action: What you'll do\n- Observation: What you learned\n\n## Phase 3: Review (REFLECT)\nReview your complete output:\n- Check for errors or inconsistencies\n- Identify improvements\n- Provide the final polished version\n\nFormat your response with clear section headers for each phase.",
+      "example": "Task: Design a real-time notification system for a mobile app\n\nContext: iOS and Android apps, 100K daily active users, need push, email, and in-app notifications.\n\nRequirements:\n- Handle 50,000 notifications per day\n- Support user preferences per channel\n- Ensure reliable delivery with retry logic\n- Track delivery status\n\nPlease approach this systematically:\n\n## Phase 1: Planning (PreAct)\nCreate a detailed execution plan with steps, dependencies, and success criteria.\n\n## Phase 2: Execution (ReAct)\nWork through your plan step-by-step, showing your thought process:\n- Thought: What you're considering\n- Action: What you'll do\n- Observation: What you learned\n\n## Phase 3: Review (REFLECT)\nReview your complete output:\n- Check for errors or inconsistencies\n- Identify improvements\n- Provide the final polished version\n\nFormat your response with clear section headers for each phase.",
+      "expected_behavior": "Model executes complete PreAct→ReAct→REFLECT pipeline",
+      "effectiveness": "highest"
+    }
+  },
+
+  "json_structured_templates": {
+    "basic_request": {
+      "description": "Simple JSON-structured request",
+      "schema": {
+        "task": "string - clear task description",
+        "domain": "string - domain category",
+        "context": "string - background information"
+      },
+      "example": {
+        "task": "Create an API endpoint documentation",
+        "domain": "software",
+        "context": "RESTful API for e-commerce platform"
+      }
+    },
+    "detailed_request": {
+      "description": "Comprehensive JSON request with all parameters",
+      "schema": {
+        "task": {
+          "type": "string - task type (create|analyze|design|debug|optimize)",
+          "objective": "string - what to accomplish",
+          "domain": "string - domain category"
+        },
+        "context": {
+          "background": "string - relevant background",
+          "constraints": "array - limitations or requirements",
+          "existing_state": "string - current situation"
+        },
+        "requirements": {
+          "functional": "array - what it must do",
+          "non_functional": "array - how it must perform",
+          "output_format": "string - expected output structure"
+        },
+        "thinking_mode": {
+          "technique": "string - react|preact|reflect|combined",
+          "show_reasoning": "boolean - show thought process",
+          "iteration_count": "number - reflection iterations"
+        }
+      },
+      "example": {
+        "task": {
+          "type": "design",
+          "objective": "Create a microservices architecture for order processing",
+          "domain": "software"
+        },
+        "context": {
+          "background": "Migrating from monolithic e-commerce platform",
+          "constraints": ["AWS infrastructure", "Budget: $5000/month", "Team of 4 developers"],
+          "existing_state": "Monolithic Django application handling 10K orders/day"
+        },
+        "requirements": {
+          "functional": ["Order creation", "Payment processing", "Inventory management", "Notification system"],
+          "non_functional": ["99.9% uptime", "< 200ms response time", "Horizontal scalability"],
+          "output_format": "Architecture diagram description with service definitions"
+        },
+        "thinking_mode": {
+          "technique": "combined",
+          "show_reasoning": true,
+          "iteration_count": 2
+        }
+      }
+    },
+    "multi_step_task": {
+      "description": "Complex multi-step task with dependencies",
+      "schema": {
+        "project": {
+          "name": "string",
+          "description": "string",
+          "domain": "string"
+        },
+        "steps": [
+          {
+            "id": "number",
+            "title": "string",
+            "description": "string",
+            "dependencies": "array of step ids",
+            "expected_output": "string"
+          }
+        ],
+        "execution_mode": {
+          "planning_required": "boolean",
+          "reasoning_depth": "string - shallow|medium|deep",
+          "reflection_enabled": "boolean"
+        },
+        "success_criteria": "array of strings"
+      },
+      "example": {
+        "project": {
+          "name": "E-commerce Search Optimization",
+          "description": "Improve product search relevance and performance",
+          "domain": "software"
+        },
+        "steps": [
+          {
+            "id": 1,
+            "title": "Analyze current search performance",
+            "description": "Review search metrics and identify bottlenecks",
+            "dependencies": [],
+            "expected_output": "Performance report with identified issues"
+          },
+          {
+            "id": 2,
+            "title": "Design improved search algorithm",
+            "description": "Create new ranking algorithm with relevance improvements",
+            "dependencies": [1],
+            "expected_output": "Algorithm specification document"
+          },
+          {
+            "id": 3,
+            "title": "Implement caching strategy",
+            "description": "Design Redis caching for frequent queries",
+            "dependencies": [1],
+            "expected_output": "Caching architecture and code"
+          },
+          {
+            "id": 4,
+            "title": "Integration plan",
+            "description": "Create rollout plan for new search system",
+            "dependencies": [2, 3],
+            "expected_output": "Deployment and testing plan"
+          }
+        ],
+        "execution_mode": {
+          "planning_required": true,
+          "reasoning_depth": "deep",
+          "reflection_enabled": true
+        },
+        "success_criteria": [
+          "Search response time < 100ms",
+          "Relevance score improvement > 20%",
+          "Zero downtime deployment"
+        ]
+      }
+    }
+  },
+
+  "domain_specific_templates": {
+    "software": {
+      "template": "## Software Development Task\n\n**Objective:** {objective}\n\n**Technical Context:**\n- Tech Stack: {tech_stack}\n- Architecture: {architecture}\n- Constraints: {constraints}\n\n**Requirements:**\n{requirements}\n\n**Deliverables:**\n{deliverables}\n\n**Instructions:** Think through this step-by-step, considering best practices, error handling, and maintainability. Provide code examples where appropriate.",
+      "variables": ["objective", "tech_stack", "architecture", "constraints", "requirements", "deliverables"],
+      "example_filled": "## Software Development Task\n\n**Objective:** Create a rate limiting middleware for Express.js\n\n**Technical Context:**\n- Tech Stack: Node.js, Express, Redis\n- Architecture: Microservices with API Gateway\n- Constraints: Must handle 10K requests/second\n\n**Requirements:**\n- Token bucket algorithm\n- Per-user and per-IP limits\n- Configurable thresholds\n- Graceful degradation\n\n**Deliverables:**\n- Middleware code\n- Configuration schema\n- Usage documentation\n\n**Instructions:** Think through this step-by-step, considering best practices, error handling, and maintainability. Provide code examples where appropriate."
+    },
+    "education": {
+      "template": "## Educational Content Task\n\n**Learning Objective:** {learning_objective}\n\n**Target Audience:**\n- Level: {skill_level}\n- Prerequisites: {prerequisites}\n- Learning Style: {learning_style}\n\n**Content Requirements:**\n{content_requirements}\n\n**Pedagogical Approach:**\n{approach}\n\n**Instructions:** Create content that builds progressively, includes practical examples, and ensures learner engagement. Plan the lesson structure first, then develop each section.",
+      "variables": ["learning_objective", "skill_level", "prerequisites", "learning_style", "content_requirements", "approach"],
+      "example_filled": "## Educational Content Task\n\n**Learning Objective:** Teach Python decorators to intermediate developers\n\n**Target Audience:**\n- Level: Intermediate (1-2 years Python experience)\n- Prerequisites: Functions, closures, basic OOP\n- Learning Style: Hands-on with real-world examples\n\n**Content Requirements:**\n- Explain decorator concept\n- Show syntax progression\n- Provide 3 practical use cases\n- Include exercises\n\n**Pedagogical Approach:**\n- Start with problem decorators solve\n- Build from simple to complex\n- Use relatable analogies\n\n**Instructions:** Create content that builds progressively, includes practical examples, and ensures learner engagement. Plan the lesson structure first, then develop each section."
+    },
+    "healthcare": {
+      "template": "## Healthcare Information Task\n\n**Topic:** {topic}\n\n**Context:**\n- Setting: {setting}\n- Audience: {audience}\n- Purpose: {purpose}\n\n**Requirements:**\n{requirements}\n\n**Safety Considerations:**\n{safety_notes}\n\n**Instructions:** Provide accurate, evidence-based information. Include appropriate disclaimers. Prioritize clarity and patient safety. Review your response for accuracy before finalizing.\n\n**DISCLAIMER:** This information is for educational purposes only and should not replace professional medical advice.",
+      "variables": ["topic", "setting", "audience", "purpose", "requirements", "safety_notes"],
+      "example_filled": "## Healthcare Information Task\n\n**Topic:** Diabetes management guidelines for Type 2 patients\n\n**Context:**\n- Setting: Primary care patient education\n- Audience: Newly diagnosed adults\n- Purpose: Initial lifestyle guidance\n\n**Requirements:**\n- Dietary recommendations\n- Exercise guidelines\n- Blood sugar monitoring basics\n- When to seek medical attention\n\n**Safety Considerations:**\n- Hypoglycemia warning signs\n- Medication interactions\n- Emergency situations\n\n**Instructions:** Provide accurate, evidence-based information. Include appropriate disclaimers. Prioritize clarity and patient safety. Review your response for accuracy before finalizing.\n\n**DISCLAIMER:** This information is for educational purposes only and should not replace professional medical advice."
+    },
+    "finance": {
+      "template": "## Financial Analysis Task\n\n**Objective:** {objective}\n\n**Context:**\n- Market/Sector: {market}\n- Time Horizon: {time_horizon}\n- Risk Profile: {risk_profile}\n\n**Data Available:**\n{data_available}\n\n**Analysis Requirements:**\n{analysis_requirements}\n\n**Instructions:** Provide data-driven analysis with clear methodology. Include appropriate risk disclosures. Show your analytical reasoning step-by-step. Review calculations for accuracy.\n\n**DISCLAIMER:** This analysis is for informational purposes only and does not constitute financial advice.",
+      "variables": ["objective", "market", "time_horizon", "risk_profile", "data_available", "analysis_requirements"],
+      "example_filled": "## Financial Analysis Task\n\n**Objective:** Portfolio diversification strategy for retirement savings\n\n**Context:**\n- Market/Sector: US equities, bonds, international\n- Time Horizon: 20 years to retirement\n- Risk Profile: Moderate\n\n**Data Available:**\n- Current portfolio: 100% US large-cap stocks\n- Monthly contribution: $1,500\n- Current value: $150,000\n\n**Analysis Requirements:**\n- Asset allocation recommendation\n- Rebalancing strategy\n- Expected risk/return analysis\n- Tax-efficient placement\n\n**Instructions:** Provide data-driven analysis with clear methodology. Include appropriate risk disclosures. Show your analytical reasoning step-by-step. Review calculations for accuracy.\n\n**DISCLAIMER:** This analysis is for informational purposes only and does not constitute financial advice."
+    },
+    "marketing": {
+      "template": "## Marketing Strategy Task\n\n**Campaign Objective:** {objective}\n\n**Target Audience:**\n- Demographics: {demographics}\n- Psychographics: {psychographics}\n- Pain Points: {pain_points}\n\n**Brand Context:**\n{brand_context}\n\n**Channels:**\n{channels}\n\n**Success Metrics:**\n{metrics}\n\n**Instructions:** Create a compelling strategy that resonates with the target audience. Plan the campaign structure first, then develop tactical elements. Review for brand consistency and message clarity.",
+      "variables": ["objective", "demographics", "psychographics", "pain_points", "brand_context", "channels", "metrics"],
+      "example_filled": "## Marketing Strategy Task\n\n**Campaign Objective:** Launch awareness campaign for new SaaS productivity tool\n\n**Target Audience:**\n- Demographics: Professionals 25-45, remote workers\n- Psychographics: Efficiency-focused, tech-savvy, time-poor\n- Pain Points: Tool overload, context switching, team coordination\n\n**Brand Context:**\n- Brand voice: Professional but approachable\n- Key differentiator: All-in-one solution\n- Budget: $50,000\n\n**Channels:**\n- LinkedIn (primary)\n- Twitter/X\n- Content marketing (blog)\n- Podcast sponsorships\n\n**Success Metrics:**\n- 10,000 sign-ups in 30 days\n- CAC under $50\n- 5% conversion to paid\n\n**Instructions:** Create a compelling strategy that resonates with the target audience. Plan the campaign structure first, then develop tactical elements. Review for brand consistency and message clarity."
+    },
+    "legal": {
+      "template": "## Legal Information Task\n\n**Topic:** {topic}\n\n**Jurisdiction:** {jurisdiction}\n\n**Context:**\n{context}\n\n**Specific Questions:**\n{questions}\n\n**Instructions:** Provide accurate legal information based on general principles. Be precise with terminology. Include appropriate disclaimers about jurisdiction-specific variations. This is for educational purposes only.\n\n**DISCLAIMER:** This information is for educational purposes only and does not constitute legal advice. Consult a qualified attorney for specific legal matters.",
+      "variables": ["topic", "jurisdiction", "context", "questions"],
+      "example_filled": "## Legal Information Task\n\n**Topic:** Software licensing and open-source compliance\n\n**Jurisdiction:** United States (general principles)\n\n**Context:**\n- Building a commercial SaaS product\n- Using multiple open-source libraries\n- Considering MIT, Apache 2.0, and GPL-licensed code\n\n**Specific Questions:**\n- What are the obligations under each license?\n- Can GPL code be used in commercial products?\n- How to properly attribute open-source usage?\n\n**Instructions:** Provide accurate legal information based on general principles. Be precise with terminology. Include appropriate disclaimers about jurisdiction-specific variations. This is for educational purposes only.\n\n**DISCLAIMER:** This information is for educational purposes only and does not constitute legal advice. Consult a qualified attorney for specific legal matters."
+    }
+  },
+
+  "output_format_templates": {
+    "structured_sections": {
+      "description": "Request output in clear sections",
+      "instruction": "Please structure your response with the following sections:\n1. Executive Summary\n2. Detailed Analysis\n3. Recommendations\n4. Implementation Steps\n5. Risks and Mitigations"
+    },
+    "code_focused": {
+      "description": "Request code-heavy output",
+      "instruction": "Please provide:\n1. Brief explanation of the approach\n2. Complete, working code with comments\n3. Usage examples\n4. Test cases\n5. Potential improvements"
+    },
+    "decision_matrix": {
+      "description": "Request comparison-based output",
+      "instruction": "Please structure as:\n1. Options Overview\n2. Comparison Matrix (pros/cons for each)\n3. Evaluation Criteria\n4. Recommendation with Justification"
+    },
+    "step_by_step_guide": {
+      "description": "Request tutorial-style output",
+      "instruction": "Please provide a step-by-step guide:\n1. Prerequisites\n2. Numbered steps with explanations\n3. Expected outcomes at each step\n4. Troubleshooting tips\n5. Verification steps"
+    }
+  },
+
+  "prompt_enhancement_patterns": {
+    "add_constraints": {
+      "description": "Adding constraints improves output quality",
+      "examples": [
+        "Limit your response to 500 words",
+        "Use only Python 3.10+ features",
+        "Consider a budget of $10,000",
+        "Assume no prior technical knowledge"
+      ]
+    },
+    "specify_persona": {
+      "description": "Assigning a persona guides response style",
+      "examples": [
+        "Respond as a senior software architect",
+        "Explain as if teaching a junior developer",
+        "Write from the perspective of a security auditor",
+        "Approach this as a product manager would"
+      ]
+    },
+    "include_examples": {
+      "description": "Providing examples clarifies expectations",
+      "pattern": "Here's an example of what I'm looking for:\n[EXAMPLE]\n\nNow apply the same approach to: [ACTUAL TASK]"
+    },
+    "negative_constraints": {
+      "description": "Specifying what NOT to do",
+      "examples": [
+        "Do not use deprecated APIs",
+        "Avoid overly technical jargon",
+        "Don't include placeholder code",
+        "Skip the basic explanations, focus on advanced concepts"
+      ]
+    }
+  }
+}
+
+
+
+
+
+
+
+

@@ -1,0 +1,51 @@
+itional argument but 3 were given
+Traceback (most recent call last):
+  File "D:\AIML\thinkerLLM\ai-preact-poc\backend\venv\Lib\site-packages\websockets\legacy\protocol.py", line 1301, in close_connection
+    await self.transfer_data_task
+  File "D:\AIML\thinkerLLM\ai-preact-poc\backend\venv\Lib\site-packages\websockets\legacy\protocol.py", line 963, in transfer_data
+    message = await self.read_message()
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\AIML\thinkerLLM\ai-preact-poc\backend\venv\Lib\site-packages\websockets\legacy\protocol.py", line 1033, in read_message
+    frame = await self.read_data_frame(max_size=self.max_size)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\AIML\thinkerLLM\ai-preact-poc\backend\venv\Lib\site-packages\websockets\legacy\protocol.py", line 1108, in read_data_frame
+    frame = await self.read_frame(max_size)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\AIML\thinkerLLM\ai-preact-poc\backend\venv\Lib\site-packages\websockets\legacy\protocol.py", line 1165, in read_frame
+    frame = await Frame.read(
+            ^^^^^^^^^^^^^^^^^
+  File "D:\AIML\thinkerLLM\ai-preact-poc\backend\venv\Lib\site-packages\websockets\legacy\framing.py", line 68, in read
+    data = await reader(2)
+           ^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\asyncio\streams.py", line 750, in readexactly
+    await self._wait_for_data('readexactly')
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\asyncio\streams.py", line 543, in _wait_for_data
+    await self._waiter
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\AIML\thinkerLLM\ai-preact-poc\backend\venv\Lib\site-packages\uvicorn\protocols\websockets\websockets_impl.py", line 349, in asgi_send
+    await self.send(data)  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\AIML\thinkerLLM\ai-preact-poc\backend\venv\Lib\site-packages\websockets\legacy\protocol.py", line 635, in send
+    await self.ensure_open()
+  File "D:\AIML\thinkerLLM\ai-preact-poc\backend\venv\Lib\site-packages\websockets\legacy\protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: sent 1012 (service restart); no close frame received
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\AIML\thinkerLLM\ai-preact-poc\backend\main.py", line 904, in websocket_direct_chat
+    await websocket.send_json({"type": "chunk", "content": chunk})
+  File "D:\AIML\thinkerLLM\ai-preact-poc\backend\venv\Lib\site-packages\starlette\websockets.py", line 173, in send_json
+    await self.send({"type": "websocket.send", "text": text})
+  File "D:\AIML\thinkerLLM\ai-preact-poc\backend\venv\Lib\site-packages\starlette\websockets.py", line 85, in send
+    await self._send(message)
+  File "D:\AIML\thinkerLLM\ai-preact-poc\backend\venv\Lib\site-packages\starlette\_exception_handler.py", line 50, in sender
+    await send(message)
+  File "D:\AIML\thinkerLLM\ai-preact-poc\backend\venv\Lib\site-packages\uvicorn\protocols\websockets\websockets_impl.py", line 365, in asgi_send
+    raise ClientDisconnected from exc
+uvicorn.protocols.utils.ClientDisconnected
